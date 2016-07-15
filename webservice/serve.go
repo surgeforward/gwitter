@@ -2,8 +2,9 @@ package webservice
 
 import (
         "fmt"
+        "encoding/json"
         "log"
-            "net/http"
+        "net/http"
         )
 
 func handleSend(w http.ResponseWriter, r *http.Request) {
@@ -11,7 +12,19 @@ func handleSend(w http.ResponseWriter, r *http.Request) {
 }
 
 func handleList(w http.ResponseWriter, r *http.Request) {
-    fmt.Println("Handling List Request")
+    w.Header().Set("Content-Type", "application/json")
+
+    messages := [3]string{"Test Message 1", "Test Message 2", "Test Message 3"}
+
+    outgoingJSON, error := json.Marshal(messages)
+
+    if error != nil {
+        log.Println(error.Error())
+        http.Error(w, error.Error(), http.StatusInternalServerError)
+        return
+    }
+
+    fmt.Fprint(w, string(outgoingJSON))
 }
 
 func Serve() {
