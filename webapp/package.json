@@ -1,15 +1,17 @@
 {
-  "name": "webapp",
-  "description": "An HTML/JS/CSS app",
-  "version": "0.0.1",
+  "name": "lineman-backbone-template",
+  "title": "An HTML/JS/CSS app using Backbone.JS",
+  "version": "0.0.2",
   "private": true,
-  "author": "John Doe",
-  "devDependencies": {
-    "lineman": "~0.36.6"
+  "author": {
+    "name": "John Doe",
+    "company": "ACME, Inc."
   },
-  "scripts": {
-    "start": "lineman run",
-    "test": "lineman spec-ci",
-    "production": "lineman clean build && npm i express@3 && node -e \"var e = require('express'), a = e(); a.use(e.static('dist/')); a.listen(process.env.PORT)\""
+  "devDependencies": {
+    "lineman": ">= 0.24.7",
+    "lineman-react": ">=0.0.1"
+  },
+  "dependencies": {
+    "jquery": "^3.1.0"
   }
 }
