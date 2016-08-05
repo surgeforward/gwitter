@@ -1,25 +1,18 @@
 window.app.router = Backbone.Router.extend({
   routes: {
-    "login" : "login",
-    "home"  : "home",
-    "*path" : "login"
+    "default" : "default",
+    "*path" : "default"
   },
 
   initialize: function(config){
     this.mountNode = config.mountNode;
   },
 
-  login: function() {
-    React.renderComponent(window.app.components.LoginPage({
-      AuthenticationService: window.app.services.AuthenticationService
+  default: function() {
+    React.renderComponent(window.app.components.DefaultPage({
+      GenericService: window.app.services.GenericService
     }), this.mountNode);
   },
-
-  home:  function() {
-    React.renderComponent(window.app.components.HomePage({
-      AuthenticationService: window.app.services.AuthenticationService
-    }), this.mountNode);
-  }
 });
 
 $(function() {
