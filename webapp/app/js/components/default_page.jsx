@@ -1,5 +1,4 @@
 /** @jsx React.DOM */
-
 window.app.components.DefaultPage = React.createClass({
 
   render: function(){
@@ -8,7 +7,7 @@ window.app.components.DefaultPage = React.createClass({
       <div className="row">
         <div className="large-6 large-offset-3">
           <h2>Welcome to the {this.getTitle()} page!</h2>
-          <div>Hello World!</div>
+          <window.app.components.MessagesContainer username={user} />
         </div>
       </div>
     );
