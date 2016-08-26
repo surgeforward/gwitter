@@ -1,6 +1,7 @@
 window.app.router = Backbone.Router.extend({
   routes: {
     "default" : "default",
+    "login" : "login",
     "*path" : "default"
   },
 
@@ -9,10 +10,12 @@ window.app.router = Backbone.Router.extend({
   },
 
   default: function() {
-    React.renderComponent(window.app.components.DefaultPage({
-      GenericService: window.app.services.GenericService
-    }), this.mountNode);
+    React.renderComponent(window.app.components.DefaultPage(), this.mountNode);
   },
+
+  login: function() {
+    React.renderComponent(window.app.components.LoginPage(), this.mountNode);
+  }
 });
 
 $(function() {

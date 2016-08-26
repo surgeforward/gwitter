@@ -6,8 +6,8 @@ window.app.components.DefaultPage = React.createClass({
     return (
       <div className="row">
         <div className="large-6 large-offset-3">
-          <h2>Welcome to the {this.getTitle()} page!</h2>
-          <window.app.components.MessagesContainer username={user} />
+          <h2>Welcome to the {this.state.title} page!</h2>
+          <window.app.components.MessagesContainer messages={this.state.messages} username={user} />
         </div>
       </div>
     );
@@ -15,12 +15,19 @@ window.app.components.DefaultPage = React.createClass({
 //  <MessagesContainer username={user}/>
   getInitialState: function(){
     return {
-      page: new window.app.models.DefaultPage()
+      title: "Default",
+      messages: ['message 1', 'message 2']
     };
   },
 
-  getTitle: function(){
-    return this.state.page.get('title');
-  },
+  getMessages: function (user) {
+    window.app.services.MessageService.get(user, function (data, error) {
+      if (error) {
+        alert("holy crap, something went wrong!!!");
+      } else {
+        this.setState(_.extend(this.state, {'messages': data}));
+      }
+    }).bind(this);
+  }
 
 });
